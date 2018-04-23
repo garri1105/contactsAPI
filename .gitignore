@@ -1,0 +1,7 @@
+.venv
+.idea
+.pytest_cache
+*.iml
+contacts.db
+mock_contact.json
+mock_contact.xml
