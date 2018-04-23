@@ -9,8 +9,7 @@ DB_URI = 'sqlite:///contacts.db'
 
 class Address(Base):
     __tablename__ = 'addresses'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+
     id = Column(Integer, primary_key=True)
     street_address = Column(String(250), nullable=False)
     unit_number = Column(String(250), nullable=True)
@@ -19,7 +18,7 @@ class Address(Base):
     post_code = Column(String(50), nullable=False)
     country = Column(String(50), nullable=False, default="US")
 
-    contact_id = Column(Integer, ForeignKey('contacts.id'))
+    contact_id = Column(Integer, ForeignKey('contacts.id',  ondelete="CASCADE"))
     contact = relationship("Contact", back_populates="address")
 
     def as_dict(self):
@@ -28,8 +27,7 @@ class Address(Base):
 
 class Contact(Base):
     __tablename__ = 'contacts'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
+
     id = Column(Integer, primary_key=True)
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
@@ -38,7 +36,7 @@ class Contact(Base):
     company = Column(String(50), nullable=True)
     notes = Column(String(500), nullable=True)
 
-    address = relationship("Address", uselist=False, back_populates="contact", cascade='all,delete')
+    address = relationship("Address", uselist=False, back_populates="contact", passive_deletes=True)
 
     def as_dict(self):
         contact = {c.name: getattr(self, c.name) for c in self.__table__.columns}
