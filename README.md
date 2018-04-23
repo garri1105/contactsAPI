@@ -34,3 +34,7 @@ waitress-serve --port=8000 inkit_project:app.app
 
 
 You should be now be able to send requests to the API. All the information is stored in ```contacts.db``` in your root folder. 
+
+## Testing
+
+```unittest``` was used to test the API. To run the tests run ```python -m unittest -v inkit_project/test_app.py``` from your root folder.
