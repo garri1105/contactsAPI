@@ -653,7 +653,11 @@ class TestAddressCollectionRoute(BaseTestCase):
 
 
 if __name__ == '__main__':
-    test_classes_to_run = [TestSingleContactRoute, TestContactCollectionRoute, TestContactsPost]
+    test_classes_to_run = [TestSingleContactRoute,
+                           TestContactCollectionRoute,
+                           TestContactsPost,
+                           TestSingleAddressRoute,
+                           TestAddressCollectionRoute]
 
     loader = unittest.TestLoader()
 
